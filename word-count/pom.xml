@@ -11,6 +11,33 @@
     <packaging>jar</packaging>
     <name>Hello Hadoop::Word Count</name>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                        <phase>package</phase> <!-- append to the packaging phase. -->
+                        <configuration>
+                            <archive>
+                              <manifest>
+                                <mainClass>ar.com.zaubersoftware.bigdata.hellohadoop.worcount.WordCount</mainClass>
+                              </manifest>
+                            </archive>
+                            <descriptors>
+                              <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>                        
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         
         <!-- BEGIN: Testing -->
