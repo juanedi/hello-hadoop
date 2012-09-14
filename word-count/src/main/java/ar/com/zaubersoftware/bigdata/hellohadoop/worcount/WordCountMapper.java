@@ -9,7 +9,6 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.util.StringUtils;
 
 /**
  * Mapper de word count.  
@@ -26,7 +25,7 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
             final LongWritable key,
             final Text value,
             final Mapper<LongWritable, Text, Text, IntWritable>.Context ctx) throws IOException, InterruptedException {
-        final String[] words = StringUtils.split(value.toString());
+        final String[] words = value.toString().split(" ");
         for (String word : words) {
             ctx.write(new Text(word), new IntWritable(1));
         }

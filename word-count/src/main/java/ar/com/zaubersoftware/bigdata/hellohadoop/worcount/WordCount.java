@@ -20,6 +20,8 @@ public class WordCount {
     public static void main(String[] args) throws Exception {
         Job job = new Job();
         
+        job.setJarByClass(WordCount.class);
+        
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         
@@ -27,8 +29,6 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setOutputFormatClass(TextOutputFormat.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Text.class);
 
         job.setMapperClass(WordCountMapper.class);
         job.setReducerClass(WordCountReducer.class);
