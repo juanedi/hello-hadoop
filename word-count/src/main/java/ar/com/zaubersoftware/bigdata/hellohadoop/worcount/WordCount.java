@@ -31,6 +31,7 @@ public class WordCount {
         job.setOutputFormatClass(TextOutputFormat.class);
 
         job.setMapperClass(WordCountMapper.class);
+        job.setCombinerClass(WordCountReducer.class);
         job.setReducerClass(WordCountReducer.class);
         
         System.exit(job.waitForCompletion(true) ? 0 : 1);
